@@ -1,0 +1,17 @@
+﻿<div class="text-center mt-5">
+    <h1>Welcome to the Stock Photo Marketplace!</h1> <!-- Welcome text -->
+    <div class="mt-4">
+        <a asp-controller="Photo" asp-action="Index" class="btn btn-primary btn-lg mx-2" style="width: 250px; height: 80px; position: relative;">
+            <span style="font-size: 1rem;">Buy</span> <!-- Adjusted font size slightly -->
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 0.7rem;">
+                Explore our collection
+            </div>
+        </a>
+        <a href="@Url.Action("Sell", "Photo")" class="btn btn-success btn-lg mx-2" style="width: 250px; height: 80px; position: relative;">
+            <span style="font-size: 1rem;">Sell</span> <!-- Adjusted font size slightly -->
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 0.7rem;">
+                Start selling your photos
+            </div>
+        </a>
+    </div>
+</div>
