@@ -1,0 +1,13 @@
+dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+
+dotnet tool install --global dotnet-ef
+
+
+
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+
+
+Server=localhost;Database=Stockphoto;User ID=root;Password=root;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=true
