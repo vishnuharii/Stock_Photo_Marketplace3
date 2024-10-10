@@ -8,3 +8,6 @@ dotnet tool install --global dotnet-ef
 
 dotnet ef migrations add InitialCreate
 dotnet ef database update
+
+
+Server=localhost;Database=Stockphoto;User ID=root;Password=root;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=true
