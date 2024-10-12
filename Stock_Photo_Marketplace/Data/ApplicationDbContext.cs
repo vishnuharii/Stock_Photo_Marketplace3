@@ -9,14 +9,14 @@ namespace Stock_Photo_Marketplace.Data
         {
         }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Photo> Photos { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Cart> Carts { get; set; }
+        public DbSet<User> Users { get; set; } //table name
+        public DbSet<Photo> Photos { get; set; } //table name
+        public DbSet<Category> Categories { get; set; } //table name
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Fluent API configurations can be done here if needed
+            
         }
+
     }
 }

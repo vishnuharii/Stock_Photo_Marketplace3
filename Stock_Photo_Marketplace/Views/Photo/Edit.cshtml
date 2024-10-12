@@ -1,0 +1,91 @@
+﻿@model Stock_Photo_Marketplace.ViewModels.PhotoViewModel
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Edit Photo</h2>
+
+    <form asp-action="Edit" method="post" enctype="multipart/form-data" class="shadow p-4 bg-light rounded">
+        <!-- Hidden field for PhotoID -->
+        <input type="hidden" asp-for="PhotoID" />
+
+        <!-- Title -->
+        <div class="form-group mb-3">
+            <label asp-for="Title" class="form-label fw-bold">Title</label>
+            <input asp-for="Title" class="form-control" placeholder="Enter photo title" />
+            <span asp-validation-for="Title" class="text-danger small"></span>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group mb-3">
+            <label asp-for="Description" class="form-label fw-bold">Description</label>
+            <textarea asp-for="Description" class="form-control" rows="3" placeholder="Enter photo description"></textarea>
+            <span asp-validation-for="Description" class="text-danger small"></span>
+        </div>
+
+        <!-- Price -->
+        <div class="form-group mb-3">
+            <label asp-for="Price" class="form-label fw-bold">Price ($)</label>
+            <input asp-for="Price" class="form-control" placeholder="Set your price" />
+            <span asp-validation-for="Price" class="text-danger small"></span>
+        </div>
+
+        <!-- Category -->
+        <div class="form-group mb-3">
+            <label asp-for="CategoryID" class="form-label fw-bold">Category</label>
+            <select asp-for="CategoryID" class="form-select" asp-items="Model.Categories">
+                <option selected disabled>Select category</option>
+            </select>
+            <span asp-validation-for="CategoryID" class="text-danger small"></span>
+        </div>
+
+        <!-- File Upload -->
+        <div class="form-group mb-4">
+            <label asp-for="PhotoFile" class="form-label fw-bold">Change Photo (optional)</label>
+            <input asp-for="PhotoFile" type="file" class="form-control" />
+            <span asp-validation-for="PhotoFile" class="text-danger small"></span>
+        </div>
+
+        <!-- Existing Photo -->
+        <div class="form-group mb-4">
+            <label class="form-label fw-bold">Current Photo</label>
+            <img src="@Url.Content(Model.FilePath)" alt="Current Photo" class="img-fluid img-thumbnail" />
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group text-center">
+            <input type="submit" value="Update Photo" class="btn btn-primary px-4 py-2" />
+        </div>
+    </form>
+
+    <div class="text-center mt-3">
+        <a asp-action="Index" class="btn btn-secondary">Back to Home</a>
+    </div>
+</div>
+
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Success</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Photo updated successfully!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelector('form').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent default form submission for demo
+
+        // Show the modal
+        var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+        successModal.show();
+      
+    });
+</script>

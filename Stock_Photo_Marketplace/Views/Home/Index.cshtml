@@ -1,17 +1,62 @@
-﻿<div class="text-center mt-5">
-    <h1>Welcome to the Stock Photo Marketplace!</h1> <!-- Welcome text -->
-    <div class="mt-4">
-        <a asp-controller="Photo" asp-action="Index" class="btn btn-primary btn-lg mx-2" style="width: 250px; height: 80px; position: relative;">
-            <span style="font-size: 1rem;">Buy</span> <!-- Adjusted font size slightly -->
-            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 0.7rem;">
-                Explore our collection
-            </div>
-        </a>
-        <a href="@Url.Action("Sell", "Photo")" class="btn btn-success btn-lg mx-2" style="width: 250px; height: 80px; position: relative;">
-            <span style="font-size: 1rem;">Sell</span> <!-- Adjusted font size slightly -->
-            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 0.7rem;">
-                Start selling your photos
-            </div>
-        </a>
+﻿@{
+    ViewData["Title"] = "Welcome";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1536640750494-2d751c62ccf4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDV8fGNvbGxhZ2UlMjBpbWFnZXxlbnwwfHx8fDE2Njg0MzM4MjI&ixlib=rb-1.2.1&q=80&w=1080'); /* Replace with your 4K wallpaper URL */ background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .content {
+            padding: 50px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+            .btn:hover {
+                transform: scale(1.05);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            }
+
+        h1 {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <div class="text-center mt-5 content">
+        <h1>Welcome to the Stock Photo Marketplace!</h1>
+        <div class="mt-4">
+            <a asp-controller="Photo" asp-action="Index" class="btn btn-primary btn-lg mx-2" style="width: 250px; height: 80px; position: relative;">
+                <span style="font-size: 1rem;">Buy</span>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 0.7rem;">
+                    Explore our collection
+                </div>
+            </a>
+            <a asp-controller="Photo" asp-action="SellIndex" class="btn btn-success btn-lg mx-2" style="width: 250px; height: 80px; position: relative;">
+                <span style="font-size: 1rem;">Sell</span>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 0.7rem;">
+                    Start selling your photos
+                </div>
+            </a>
+        </div>
     </div>
-</div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

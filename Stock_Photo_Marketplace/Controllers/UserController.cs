@@ -10,6 +10,7 @@ public class UserController : Controller
         _userService = userService;
     }
 
+    //Action for Login to application
     [HttpGet]
     public IActionResult Login()
     {
@@ -44,7 +45,7 @@ public class UserController : Controller
         return View();
     }
 
-
+    //Action for Signing out
     [HttpPost]
     public IActionResult SignOut()
     {
@@ -52,6 +53,8 @@ public class UserController : Controller
         return RedirectToAction("Login", "User");
     }
 
+
+    //Action for Creating/Register new User
     [HttpGet]
     public IActionResult Register()
     {

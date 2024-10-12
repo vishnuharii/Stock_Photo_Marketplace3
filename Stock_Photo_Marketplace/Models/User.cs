@@ -4,7 +4,7 @@ namespace Stock_Photo_Marketplace.Models
 {
     public class User
     {
-        public int UserID { get; set; } // Primary Key
+        public int UserID { get; set; }
 
         [Required(ErrorMessage = "Username is required.")]
         public string Username { get; set; }

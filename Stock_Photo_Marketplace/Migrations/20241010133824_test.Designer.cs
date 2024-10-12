@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Stock_Photo_Marketplace.Data;
 
@@ -11,9 +12,11 @@ using Stock_Photo_Marketplace.Data;
 namespace Stock_Photo_Marketplace.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241010133824_test")]
+    partial class test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +24,35 @@ namespace Stock_Photo_Marketplace.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Stock_Photo_Marketplace.Models.Cart", b =>
+                {
+                    b.Property<int>("CartID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartID"));
+
+                    b.Property<DateTime>("AddedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PhotoID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserID")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartID");
+
+                    b.HasIndex("PhotoID");
+
+                    b.HasIndex("UserID");
+
+                    b.ToTable("Carts");
+                });
 
             modelBuilder.Entity("Stock_Photo_Marketplace.Models.Category", b =>
                 {
@@ -68,14 +100,9 @@ namespace Stock_Photo_Marketplace.Migrations
                     b.Property<DateTime>("UploadDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserID")
-                        .HasColumnType("int");
-
                     b.HasKey("PhotoID");
 
                     b.HasIndex("CategoryID");
-
-                    b.HasIndex("UserID");
 
                     b.ToTable("Photos");
                 });
@@ -105,11 +132,11 @@ namespace Stock_Photo_Marketplace.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Stock_Photo_Marketplace.Models.Photo", b =>
+            modelBuilder.Entity("Stock_Photo_Marketplace.Models.Cart", b =>
                 {
-                    b.HasOne("Stock_Photo_Marketplace.Models.Category", "Category")
+                    b.HasOne("Stock_Photo_Marketplace.Models.Photo", "Photo")
                         .WithMany()
-                        .HasForeignKey("CategoryID")
+                        .HasForeignKey("PhotoID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -119,9 +146,20 @@ namespace Stock_Photo_Marketplace.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Category");
+                    b.Navigation("Photo");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Stock_Photo_Marketplace.Models.Photo", b =>
+                {
+                    b.HasOne("Stock_Photo_Marketplace.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 #pragma warning restore 612, 618
         }
